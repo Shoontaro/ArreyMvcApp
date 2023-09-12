@@ -1,0 +1,61 @@
+﻿@model ArreyMvcApp.Models.Author
+
+@{
+    ViewBag.Title = "GetAuthor";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="authorBlock">
+        <label>Author`s name</label>
+        <input type="text" name="name">
+    </div>
+    <div id="booksBlock">
+        <div class="bookItem">
+            <h4>Book № 1</h4>
+            <div>
+                <label>Name</label>
+                <div>
+                    <input type="text" name="Books[0].name" />
+                </div>
+            </div>  
+            <div>
+                <label>Price</label>
+                <div>
+                    <input type="text" name="Books[0].price" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <p>
+        <a class="addLink">Add new element</a>
+    </p>
+    <p>
+        <input type="submit" value="Add">
+    </p>
+
+}
+
+@section Scripts{
+    <script>
+        $(function () {
+            var i = 0;
+            $('.addLink').click(function () {
+                console.log("click");
+                i++;
+                var html2Add = "<div class='bookItem'>" +
+                    "<h4>Book № " + (i + 1) + "</h4>" +
+                    "<div><label>Name</label><div>" +
+                    "<input type='text' name='Books[" + i + "].name' />" +
+                    "</div>" +
+                    "<div><label>Price</label><div>" +
+                    "<input type='text' name='Books[" + i + "].price' />" +
+                    "</div></div></div>";
+                //+"<input type='text' name='Book[" + (i + 1) + "].price'></div></div>";
+                $("#booksBlock").append(html2Add);
+            })
+        })
+    </script>
+}
